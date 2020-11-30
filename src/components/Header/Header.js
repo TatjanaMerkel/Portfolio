@@ -1,14 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+import './Header.css';
 
 export class Header extends Component {
   render() {
-    return(
+    return (
       <header>
-        <div className="header">
-            Header
+        <div id="navbar" className="sticky" style={{ zIndex: "1000" }}>
+          <a className="active" >
+            Gemüse
+          </a>
+          <a>Obst</a>
+          <a>Schokolade</a>
         </div>
       </header>
-    ); 
+    );
   }
 }
 
