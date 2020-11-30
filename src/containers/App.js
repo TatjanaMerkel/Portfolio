@@ -61,12 +61,7 @@ class App extends React.Component {
 
                 <script>var Alert = ReactBootstrap.Alert;</script>
 
-                <div id="navbar" className='sticky' style={{zIndex: '1000'}}>
-                    <a className="active" style={{marginRight: '100px'}}>Gemüse</a>
-                    <a>Obst</a>
-                    <a>Schokolade</a>
-
-                </div>
+                <Header />
                 <div className="content">
                     <div style={{display: 'flex', flexWrap: 'wrap'}}>
 
