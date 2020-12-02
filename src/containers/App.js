@@ -1,13 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import Header from "../components/Header/Header";
-import Section from "../components/Section";
-import Footer from "../components/Footer";
 import "./App.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+
 class App extends React.Component {
+
+    addShoppingCard() {
+        console.log('Add');
+    }
+
+
   state = {
     vegetables: [
       {
@@ -42,9 +46,10 @@ class App extends React.Component {
           <Card.Title>{vegetable["title"]}</Card.Title>
           <Card.Text>{vegetable["description"]}</Card.Text>
         <div className="text-center">
-            <Button variant="primary">Warenkorb hinzufügen</Button>
+            <Button onClick={this.addShoppingCard} variant="primary">Warenkorb hinzufügen</Button>
         </div>
         </Card.Body>
+    
       </Card>
     ));
 
