@@ -58,8 +58,7 @@ class App extends React.Component {
         ></script>
 
         <script>var Alert = ReactBootstrap.Alert;</script>
-
-        <Header />
+        
         <div className="content">
           <div style={{ display: "flex", flexWrap: "wrap" }}>{cards}</div>
         </div>
