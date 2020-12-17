@@ -1,4 +1,7 @@
 import React from "react";
+import {
+    Button
+  } from "react-bootstrap";
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -18,11 +21,15 @@ class ProductList extends React.Component {
     this.setState({ products: products });
   }
 
+  handleDelete(id) {
+
+  }
+
   render() {
     return (
       <ul>
         {this.state.products.map((product, index) => (
-          <li>{product.name}</li>
+          <li>{product.name} <Button>Edit</Button> <Button onClick={this.handleDelete(product.id)}>Delete</Button></li>
         ))}
       </ul>
     );
