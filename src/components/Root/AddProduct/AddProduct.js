@@ -1,9 +1,50 @@
 import React from "react";
 
 class AddProduct extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            values: {
+              name: "asdf",
+              category: 3,
+              description: "",
+              image: "",
+            },
+        
+            isSubmitting: false,
+            isError: false,
+          };
+      }
+
+  submitForm = async (e) => {
+    e.preventDefault();
+    console.log(this.state);
+    this.setState({ isSubmitting: true });
+
+    const res = await fetch("https://localhost:3001/add-product", {
+      method: "POST",
+      body: JSON.stringify(this.state.values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    this.setState({ isSubmitting: false });
+    const data = await res.json();
+
+    !data.hasOwnProperty("error")
+      ? this.setState({ message: data.success })
+      : this.setState({ message: data.error, isError: true });
+  };
+
+  handleInputChange = (e) =>
+    this.setState({
+      values: { ...this.state.values, [e.target.name]: e.target.value },
+    });
+
   render() {
     return (
-      <form class="form-horizontal" action="/action_page.php">
+      <form class="form-horizontal" onSubmit={this.submitForm}>
         <div class="form-group">
           <label class="control-label col-sm-2" for="name">
             Name:
@@ -13,7 +54,10 @@ class AddProduct extends React.Component {
               type="text"
               class="form-control"
               id="name"
+              name="name"
               placeholder="Enter product name"
+              value={this.state.values.name}
+              onChange={this.handleInputChange}
             />
           </div>
         </div>
@@ -23,9 +67,15 @@ class AddProduct extends React.Component {
             Category:
           </label>
           <div class="col-sm-10">
-            <select id="category" class="form-control">
-              <option value="fruits">Fruits</option>
-              <option value="vegetables">Vegetables</option>
+            <select
+              id="category"
+              name="category"
+              class="form-control"
+              value={this.state.values.category}
+              onChange={this.handleInputChange}
+            >
+              <option value="3">Fruits</option>
+              <option value="4">Vegetables</option>
             </select>
           </div>
         </div>
@@ -38,7 +88,10 @@ class AddProduct extends React.Component {
             <textarea
               class="form-control"
               id="description"
+              name="description"
               placeholder="Enter product description"
+              value={this.state.values.description}
+              onChange={this.handleInputChange}
             />
           </div>
         </div>
@@ -52,7 +105,10 @@ class AddProduct extends React.Component {
               type="text"
               class="form-control"
               id="image"
+              name="image"
               placeholder="Enter product image"
+              value={this.state.values.image}
+              onChange={this.handleInputChange}
             />
           </div>
         </div>
