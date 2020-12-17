@@ -21,7 +21,7 @@ class AddProduct extends React.Component {
     console.log(this.state);
     this.setState({ isSubmitting: true });
 
-    const res = await fetch("https://localhost:3001/add-product", {
+    const res = await fetch("http://localhost:3001/product", {
       method: "POST",
       body: JSON.stringify(this.state.values),
       headers: {
