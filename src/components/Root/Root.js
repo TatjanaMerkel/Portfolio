@@ -18,7 +18,6 @@ const Root = () => {
         <Link to="/products">App</Link>
         <Link to="/admin/add-product">Add Product</Link>
         <Link to="/admin/list-products">List Products</Link>
-        <Link to="/admin/edit-product/1">Edit Product</Link>
       </div>
 
       <Switch>

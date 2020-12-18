@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useHistory } from 'react-router-dom';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -35,12 +36,19 @@ class ProductList extends React.Component {
     console.log(res);
   }
 
+  handleEdit = (id) => {
+    this.props.history.push(`/admin/edit-product/${id}`);
+  }
+
   render() {
     return (
       <ul>
         {this.state.products.map((product, index) => (
           <li>
-            {product.id} {product.name} <Button>Edit</Button>{" "}
+            {product.id} {product.name}
+            <Button onClick={() => this.handleEdit(product.id)}>
+              Edit
+            </Button>{" "}
             <Button onClick={() => this.handleDelete(product.id)}>
               Delete
             </Button>
