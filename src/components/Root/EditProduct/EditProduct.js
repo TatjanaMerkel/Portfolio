@@ -1,20 +1,34 @@
 import React from "react";
 
 class EditProduct extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            values: {
-              name: "asdf",
-              category: 3,
-              description: "",
-              image: "",
-            },
-        
-            isSubmitting: false,
-            isError: false,
-          };
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      values: {
+        name: "asdf",
+        category: 3,
+        description: "",
+        image: "",
+      },
+
+      isSubmitting: false,
+      isError: false,
+    };
+  }
+
+  async componentDidMount() {
+    const id = this.props.match.params.id;
+    const res = await fetch(`http://localhost:3001/product/${id}`);
+    const product = await res.json();
+    this.setState({
+      values: {
+        name: product.name,
+        category: product.category,
+        description: product.description,
+        image: product.image,
+      },
+    });
+  }
 
   submitForm = async (e) => {
     e.preventDefault();
