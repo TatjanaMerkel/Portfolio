@@ -6,6 +6,7 @@ import Home from "./Home";
 import Content from "./Content";
 import AddProduct from "./AddProduct";
 import ProductList from "./ProductList";
+import EditProduct from "./EditProduct";
 
 const Root = () => {
   return (
@@ -17,6 +18,7 @@ const Root = () => {
         <Link to="/products">App</Link>
         <Link to="/admin/add-product">Add Product</Link>
         <Link to="/admin/list-products">List Products</Link>
+        <Link to="/admin/edit-product">Edit Product</Link>
       </div>
 
       <Switch>
@@ -25,6 +27,7 @@ const Root = () => {
         <Route component={About} path="/about" />
         <Route component={AddProduct} path="/admin/add-product" />
         <Route component={ProductList} path="/admin/list-products" />
+        <Route component={EditProduct} path="/admin/edit-product" />
       </Switch>
     </div>
   );
