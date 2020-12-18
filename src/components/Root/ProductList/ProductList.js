@@ -18,10 +18,18 @@ class ProductList extends React.Component {
   }
 
   async handleDelete(id) {
-      console.log(id);
+    console.log(id);
     const res = await fetch(`http://localhost:3001/product/${id}`, {
       method: "DELETE",
     });
+
+    const newProducts = this.state.products.filter(function (obj) {
+      return obj.id !== id;
+    });
+
+    this.setState({ products: newProducts });
+
+    console.log(this.state.products);
 
     console.log("Delete result: ");
     console.log(res);
@@ -33,7 +41,9 @@ class ProductList extends React.Component {
         {this.state.products.map((product, index) => (
           <li>
             {product.id} {product.name} <Button>Edit</Button>{" "}
-            <Button onClick={() => this.handleDelete(product.id)}>Delete</Button>
+            <Button onClick={() => this.handleDelete(product.id)}>
+              Delete
+            </Button>
           </li>
         ))}
       </ul>

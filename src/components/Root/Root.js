@@ -23,7 +23,7 @@ const Root = () => {
         <Route component={Home} exact path="/" />
         <Route component={Content} path="/products" />
         <Route component={About} path="/about" />
-        <Route component={AddProduct} path="/admin/add-products" />
+        <Route component={AddProduct} path="/admin/add-product" />
         <Route component={ProductList} path="/admin/list-products" />
       </Switch>
     </div>
