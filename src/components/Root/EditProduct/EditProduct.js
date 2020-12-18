@@ -4,6 +4,7 @@ class EditProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       values: {
         name: "asdf",
         category: 3,
@@ -18,6 +19,7 @@ class EditProduct extends React.Component {
 
   async componentDidMount() {
     const id = this.props.match.params.id;
+    this.setState({ id: id });
     const res = await fetch(`http://localhost:3001/product/${id}`);
     const product = await res.json();
     this.setState({
@@ -35,8 +37,8 @@ class EditProduct extends React.Component {
     console.log(this.state);
     this.setState({ isSubmitting: true });
 
-    const res = await fetch("http://localhost:3001/product", {
-      method: "POST",
+    const res = await fetch(`http://localhost:3001/product/${this.state.id}`, {
+      method: "PUT",
       body: JSON.stringify(this.state.values),
       headers: {
         "Content-Type": "application/json",
