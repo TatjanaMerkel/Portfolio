@@ -13,12 +13,6 @@ const Root = () => {
     <div>
       <Header />
 
-      <div>
-        <Link to="/products">App</Link>
-        <Link to="/admin/add-product">Add Product</Link>
-        <Link to="/admin/list-products">List Products</Link>
-      </div>
-
       <Switch>
         <Route component={Content} path="/products" />
         <Route component={AddProduct} path="/admin/add-product" />
