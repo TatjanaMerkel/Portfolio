@@ -8,10 +8,13 @@ import AddProduct from "./AddProduct";
 import ProductList from "./ProductList";
 import EditProduct from "./EditProduct";
 
+import Header from "../../components/Header/Header";
+
 const Root = () => {
   return (
     <div>
-      <strong> Root </strong>
+      <Header />
+
       <div>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
