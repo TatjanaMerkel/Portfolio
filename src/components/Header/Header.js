@@ -27,12 +27,11 @@ export class Header extends Component {
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.5">Basic-Box</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#vegetable">Gemüse</Nav.Link>
-            <Nav.Link href="#fruits">Früchte</Nav.Link>
-            <Nav.Link href="#tea">Tee</Nav.Link>
-            <Nav.Link href="#add-product">Add Product</Nav.Link>
 
-            <Nav.Link as={Link} to="/products">App</Nav.Link>
+            <Nav.Link as={Link} to="/products">Gemüse</Nav.Link>
+            <Nav.Link as={Link} to="/products">Obst</Nav.Link>
+            <Nav.Link as={Link} to="/products">Tee</Nav.Link>
+            
             <Nav.Link as={Link} to="/admin/add-product">Add Product</Nav.Link>
             <Nav.Link as={Link} to="/admin/list-products">List Products</Nav.Link>
           </Nav>
