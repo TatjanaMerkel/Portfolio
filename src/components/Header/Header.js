@@ -27,6 +27,7 @@ export class Header extends Component {
             <Nav.Link href="#vegetable">Gemüse</Nav.Link>
             <Nav.Link href="#fruits">Früchte</Nav.Link>
             <Nav.Link href="#tea">Tee</Nav.Link>
+            <Nav.Link href="#add-product">Add Product</Nav.Link>
           </Nav>
           <Form inline>
             <Button variant="outline-info">Warenkorb</Button>

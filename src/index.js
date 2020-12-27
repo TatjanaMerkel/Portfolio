@@ -15,7 +15,6 @@ ReactDOM.render(
     <React.StrictMode>
       <Header />
       <Root />
-      <App />
     </React.StrictMode>
     ,
   </Router>,
