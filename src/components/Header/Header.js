@@ -48,7 +48,7 @@ export class Header extends Component {
 
             <NavDropdown title="Produkte">
               {this.state.categories.map((category, index) => (
-                <NavDropdown.Item as={Link} to="/products">
+                <NavDropdown.Item as={Link} to={`/products?category=${category.id}`}>
                   {category.name}
                 </NavDropdown.Item>
               ))}
