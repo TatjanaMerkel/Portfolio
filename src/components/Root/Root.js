@@ -10,6 +10,7 @@ import Header from "../../components/Header/Header";
 import OnlineShop from "../OnlineShop";
 import AddCategory from "../AddCategory";
 import CategoryList from "../CategoryList";
+import EditCategory from "../EditCategory";
 
 const Root = () => {
   return (
@@ -22,6 +23,7 @@ const Root = () => {
 
         <Route component={AddCategory} path="/admin/add-category" />
         <Route component={CategoryList} path="/admin/list-categories" />
+        <Route component={EditCategory} path="/admin/edit-category/:id" />
 
         <Route component={AddProduct} path="/admin/add-product" />
         <Route component={ProductList} path="/admin/list-products" />
