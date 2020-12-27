@@ -12,6 +12,21 @@ import "./Header.css";
 import { Link, Route, Switch } from "react-router-dom";
 
 export class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+      categories: [],
+    };
+  }
+
+  async componentDidMount() {
+    const res = await fetch("http://localhost:3001/categories/");
+    const categories = await res.json();
+    this.setState({ categories: categories });
+  }
+
   render() {
     return (
       <header>
@@ -32,15 +47,11 @@ export class Header extends Component {
             </NavDropdown>
 
             <NavDropdown title="Produkte">
-              <NavDropdown.Item as={Link} to="/products">
-                Gemüse
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/products">
-                Obst
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/products">
-                Tee
-              </NavDropdown.Item>
+              {this.state.categories.map((category, index) => (
+                <NavDropdown.Item as={Link} to="/products">
+                  {category.name}
+                </NavDropdown.Item>
+              ))}
             </NavDropdown>
 
             <Nav.Link as={Link} to="/admin/add-category">
