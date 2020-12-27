@@ -9,6 +9,7 @@ import EditProduct from "../EditProduct";
 import Header from "../../components/Header/Header";
 import OnlineShop from "../OnlineShop";
 import AddCategory from "../AddCategory";
+import CategoryList from "../CategoryList";
 
 const Root = () => {
   return (
@@ -18,7 +19,10 @@ const Root = () => {
       <Switch>
         <Route component={OnlineShop} exact path="/" />
         <Route component={Content} path="/products" />
+
         <Route component={AddCategory} path="/admin/add-category" />
+        <Route component={CategoryList} path="/admin/list-categories" />
+
         <Route component={AddProduct} path="/admin/add-product" />
         <Route component={ProductList} path="/admin/list-products" />
         <Route component={EditProduct} path="/admin/edit-product/:id" />

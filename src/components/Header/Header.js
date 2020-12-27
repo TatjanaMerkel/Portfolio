@@ -35,6 +35,8 @@ export class Header extends Component {
             <Nav.Link as={Link} to="/products">Tee</Nav.Link>
 
             <Nav.Link as={Link} to="/admin/add-category">Add Category</Nav.Link>
+            <Nav.Link as={Link} to="/admin/list-categories">List Categories</Nav.Link>
+
             <Nav.Link as={Link} to="/admin/add-product">Add Product</Nav.Link>
             <Nav.Link as={Link} to="/admin/list-products">List Products</Nav.Link>
           </Nav>

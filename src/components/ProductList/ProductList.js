@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
 
 class ProductList extends React.Component {
   constructor(props) {
