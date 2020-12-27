@@ -3,17 +3,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "./index.css";
-import App from "./containers/App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Header from "./components/Header/Header";
 import Root from "./components/Root/Root";
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <Header />
       <Root />
     </React.StrictMode>
     ,
