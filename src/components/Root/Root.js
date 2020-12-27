@@ -25,7 +25,7 @@ const Root = () => {
 
       <Switch>
         <Route component={OnlineShop} exact path="/" />
-        <Route path="/products"><Content name={query.get("category")}/></Route>
+        <Route path="/products"><Content category={query.get("category")}/></Route>
 
         <Route component={AddCategory} path="/admin/add-category" />
         <Route component={CategoryList} path="/admin/list-categories" />
