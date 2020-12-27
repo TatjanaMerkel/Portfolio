@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
 
-import About from "./About";
-import Home from "./Home";
-import Content from "./Content";
-import AddProduct from "./AddProduct";
-import ProductList from "./ProductList";
-import EditProduct from "./EditProduct";
+import About from "../About";
+import Home from "../Home";
+import Content from "../Content";
+import AddProduct from "../AddProduct";
+import ProductList from "../ProductList";
+import EditProduct from "../EditProduct";
 
 import Header from "../../components/Header/Header";
 
