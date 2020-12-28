@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
 import Content from "../Content";
 import AddProduct from "../AddProduct";
@@ -12,14 +12,20 @@ import AddCategory from "../AddCategory";
 import CategoryList from "../CategoryList";
 import EditCategory from "../EditCategory";
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const Root = () => {
+  const query = useQuery();
+  
   return (
-    <div>
+    <div style={{minHeight: '90vh'}}>
       <Header />
 
       <Switch>
         <Route component={OnlineShop} exact path="/" />
-        <Route component={Content} path="/products" />
+        <Route path="/products"><Content category={query.get("category")}/></Route>
 
         <Route component={AddCategory} path="/admin/add-category" />
         <Route component={CategoryList} path="/admin/list-categories" />

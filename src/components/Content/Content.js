@@ -8,15 +8,25 @@ class Content extends React.Component {
     super(props);
 
     this.state = {
+      category: props.category,
       count: 0,
       vegetables: []
     };
   }
 
-  async componentDidMount() {
-    const res = await fetch('http://localhost:3001/products/');
+  async updateProducts(category) {
+    const res = await fetch(`http://localhost:3001/products?category=${this.state.category}`);
     const vegetables = await res.json();
     this.setState({vegetables: vegetables});
+  }
+
+  componentDidMount() {
+    this.updateProducts(this.state.category);
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    await this.setState({category: nextProps.category})
+    this.updateProducts(this.state.category);
   }
 
   render() {
