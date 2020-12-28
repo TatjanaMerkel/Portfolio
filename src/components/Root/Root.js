@@ -20,7 +20,7 @@ const Root = () => {
   const query = useQuery();
   
   return (
-    <div>
+    <div style={{minHeight: '90vh'}}>
       <Header />
 
       <Switch>
