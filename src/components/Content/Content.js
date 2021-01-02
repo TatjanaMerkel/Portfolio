@@ -10,18 +10,36 @@ class Content extends React.Component {
     this.state = {
       category: props.category,
       count: 0,
-      vegetables: []
+      vegetables: [],
+      priceTypes: []
     };
   }
 
   async updateProducts(category) {
     const res = await fetch(`http://localhost:3001/products?category=${this.state.category}`);
     const vegetables = await res.json();
+    console.log(vegetables)
     this.setState({vegetables: vegetables});
+  }
+
+  async updatePriceTypes() {
+    const res = await fetch('http://localhost:3001/price-types');
+    const priceTypes = await res.json();
+    console.log(priceTypes)
+    this.setState({priceTypes: priceTypes});
+  }
+
+  getPriceTypeDescription(id) {
+    const priceTypes = this.state.priceTypes.filter(priceType => priceType['id'] === id)
+    if (priceTypes.length > 0)
+      return priceTypes[0]['description']
+    else
+      return ''
   }
 
   componentDidMount() {
     this.updateProducts(this.state.category);
+    this.updatePriceTypes();
   }
 
   async componentWillReceiveProps(nextProps) {
@@ -34,8 +52,9 @@ class Content extends React.Component {
       <Card style={{ width: "18rem", margin: "8px" }}>
         <Card.Img variant="top" src={vegetable["image"]} />
         <Card.Body>
-          <Card.Title>{vegetable["title"]}</Card.Title>
+          <Card.Title>{vegetable["name"]}</Card.Title>
           <Card.Text>{vegetable["description"]}</Card.Text>
+          <Card.Text>{vegetable["price"]/100} € {this.getPriceTypeDescription(vegetable["price_type"])} </Card.Text>
           <div className="text-center">
             <Button
               onClick={() => this.setState({ count: this.state.count + 1 })}
