@@ -1,4 +1,5 @@
 import React from "react";
+import "./ShoppingCart.css";
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -19,13 +20,44 @@ class ShoppingCart extends React.Component {
 
   render() {
     return (
-      <table border="1">
+      <table
+        border="1"
+        style={{
+          margin: "auto",
+          "margin-top": "20px",
+          "border-spacing": "8px",
+          "border-collapse": "separate",
+        }}
+      >
+        <thead>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+        </thead>
+        <tbody>
         {this.state.products.map((product, index) => (
           <tr>
-            <td>{product.id}</td>
+            <td>
+              <img
+                width="100"
+                height="100"
+                src={product.image}
+                alt=""
+                style={{ "object-fit": "cover" }}
+              />
+            </td>
             <td>{product.name}</td>
+            <td>{product.price / 100} €</td>
           </tr>
         ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>100 €</td>
+          </tr>
+        </tfoot>
       </table>
     );
   }
