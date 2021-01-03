@@ -12,10 +12,15 @@ class ShoppingCart extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    const res = await fetch("http://localhost:3001/products/");
-    const products = await res.json();
-    this.setState({ products: products });
+  componentDidMount() {
+    Object.keys(localStorage).forEach(async id => {
+      const res = await fetch(`http://localhost:3001/product/${id}`);
+      const product = await res.json();
+
+      const products = this.state.products;
+      products.push(product);
+      this.setState({ products: products });
+    });
   }
 
   render() {
