@@ -10,7 +10,7 @@ class Products extends React.Component {
 
     this.state = {
       category: props.category,
-      vegetables: [],
+      products: [],
       priceTypes: [],
       amounts: {},
     };
@@ -35,22 +35,19 @@ class Products extends React.Component {
     const res = await fetch(
       `http://localhost:3001/products?category=${this.state.category}`
     );
-    const vegetables = await res.json();
-    console.log(vegetables);
-    this.setState({ vegetables: vegetables });
+    const products = await res.json();
+    this.setState({ products: products });
 
     const amounts = this.state.amounts;
-    for (const vegetable of vegetables) {
-      amounts[vegetable.id] = 0;
+    for (const product of products) {
+      amounts[product.id] = 0;
     }
     this.setState({ amounts: amounts });
-    console.log(this.state.amounts);
   }
 
   async updatePriceTypes() {
     const res = await fetch("http://localhost:3001/price-types");
     const priceTypes = await res.json();
-    console.log(priceTypes);
     this.setState({ priceTypes: priceTypes });
   }
 
@@ -79,29 +76,26 @@ class Products extends React.Component {
   }
 
   render() {
-    const cards = this.state.vegetables.map((vegetable) => (
+    const cards = this.state.products.map((product) => (
       <Card style={{ width: "18rem", margin: "8px" }}>
-        <Card.Img variant="top" src={vegetable["image"]} />
+        <Card.Img variant="top" src={product["image"]} />
         <Card.Body>
-          <Card.Title>{vegetable["name"]}</Card.Title>
-          <Card.Text>{vegetable["description"]}</Card.Text>
+          <Card.Title>{product["name"]}</Card.Title>
+          <Card.Text>{product["description"]}</Card.Text>
           <Card.Text>
             <input
               min="1"
               type="number"
-              value={this.state.amounts[vegetable.id]}
+              value={this.state.amounts[product.id]}
               onChange={(event) =>
-                this.setAmount(vegetable.id, event.target.value)
+                this.setAmount(product.id, event.target.value)
               }
             />
-            {vegetable["price"] / 100} €{" "}
-            {this.getPriceTypeDescription(vegetable["price_type"])}{" "}
+            {product["price"] / 100} €{" "}
+            {this.getPriceTypeDescription(product["price_type"])}{" "}
           </Card.Text>
           <div className="text-center">
-            <Button
-              onClick={() => this.addItem(vegetable.id)}
-              variant="primary"
-            >
+            <Button onClick={() => this.addItem(product.id)} variant="primary">
               Warenkorb hinzufügen
             </Button>
           </div>
