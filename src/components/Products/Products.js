@@ -1,7 +1,8 @@
-import React from "react";
 import "./Products.css";
-import Card from "react-bootstrap/Card";
+
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import React from "react";
 
 class Products extends React.Component {
   constructor(props) {

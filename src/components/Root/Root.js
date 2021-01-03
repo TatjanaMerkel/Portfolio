@@ -1,16 +1,15 @@
-import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 
-import Products from "../Products";
-import AddProduct from "../AddProduct";
-import ProductList from "../ProductList";
-import EditProduct from "../EditProduct";
-
-import Header from "../../components/Header/Header";
-import OnlineShop from "../OnlineShop";
 import AddCategory from "../AddCategory";
+import AddProduct from "../AddProduct";
 import CategoryList from "../CategoryList";
 import EditCategory from "../EditCategory";
+import EditProduct from "../EditProduct";
+import Header from "../../components/Header/Header";
+import OnlineShop from "../OnlineShop";
+import ProductList from "../ProductList";
+import Products from "../Products";
+import React from "react";
 import ShoppingCart from "../ShoppingCart";
 
 function useQuery() {

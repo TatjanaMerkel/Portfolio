@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-} from "react-bootstrap";
 import "./Header.css";
 
+import {
+  Button,
+  Form,
+  FormControl,
+  Nav,
+  NavDropdown,
+  Navbar,
+} from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
+import React, { Component } from "react";
 
 export class Header extends Component {
   constructor(props) {
