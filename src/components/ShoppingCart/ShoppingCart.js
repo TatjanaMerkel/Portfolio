@@ -15,7 +15,8 @@ class ShoppingCart extends React.Component {
 
   setItem(id, amount) {
     localStorage.setItem(String(id), String(amount));
-    this.forceUpdate();
+
+    this.calculate_total_total();
   }
 
   componentDidMount() {
@@ -27,12 +28,11 @@ class ShoppingCart extends React.Component {
       const res = await fetch(`http://localhost:3001/product/${id}`);
       const product = await res.json();
 
-      const product_total = this.calculate_total(product);
-      this.setState({ total: Number(this.state.total) + Number(product_total) });
-
       const products = this.state.products;
       products.push(product);
       this.setState({ products: products });
+
+      this.calculate_total_total();
     });
   }
 
@@ -40,10 +40,20 @@ class ShoppingCart extends React.Component {
     return ((product.price / 100) * localStorage.getItem(product.id)).toFixed(2);
   }
 
+  calculate_total_total() {
+    let total = 0;
+
+    for (const product of this.state.products) {
+      total += Number(this.calculate_total(product));
+    }
+
+    this.setState({ total: total });
+  }
+
   removeItem(product) {
     localStorage.removeItem(product.id);
-    const product_total = this.calculate_total(product);
-    this.setState({ total: this.state.total - product_total });
+
+    this.calculate_total_total();
 
     const products = this.state.products.filter((p) => p.id !== product.id);
     this.setState({ products: products });
@@ -83,6 +93,7 @@ class ShoppingCart extends React.Component {
               <td>{product.price / 100} €</td>
               <td>
                 <input
+                  min="1"
                   type="number"
                   value={localStorage.getItem(product.id)}
                   onChange={(event) =>
@@ -103,7 +114,7 @@ class ShoppingCart extends React.Component {
             <td></td>
             <td></td>
             <td></td>
-            <th>{this.state.total} €</th>
+            <th>{this.state.total.toFixed(2)} €</th>
           </tr>
         </tfoot>
       </table>
