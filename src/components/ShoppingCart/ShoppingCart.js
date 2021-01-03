@@ -1,6 +1,8 @@
-import React from "react";
 import "./ShoppingCart.css";
+
 import { Button } from "react-bootstrap";
+import HorizontalLinearStepper from "../CheckoutStepper/CheckoutStepper";
+import React from "react";
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -37,7 +39,9 @@ class ShoppingCart extends React.Component {
   }
 
   calculate_total(product) {
-    return ((product.price / 100) * localStorage.getItem(product.id)).toFixed(2);
+    return ((product.price / 100) * localStorage.getItem(product.id)).toFixed(
+      2
+    );
   }
 
   calculate_total_total() {
@@ -61,63 +65,69 @@ class ShoppingCart extends React.Component {
 
   render() {
     return (
-      <table
-        border="1"
-        style={{
-          margin: "auto",
-          "margin-top": "20px",
-          "border-spacing": "8px",
-          "border-collapse": "separate",
-        }}
-      >
-        <thead>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Amount</th>
-          <th>Total </th>
-        </thead>
-        <tbody>
-          {this.state.products.map((product, index) => (
+      <div>
+        <HorizontalLinearStepper></HorizontalLinearStepper>
+
+        <table
+          border="1"
+          style={{
+            margin: "auto",
+            "margin-top": "20px",
+            "border-spacing": "8px",
+            "border-collapse": "separate",
+          }}
+        >
+          <thead>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Total </th>
+          </thead>
+          <tbody>
+            {this.state.products.map((product, index) => (
+              <tr>
+                <td>
+                  <img
+                    width="100"
+                    height="100"
+                    src={product.image}
+                    alt=""
+                    style={{ "object-fit": "cover" }}
+                  />
+                </td>
+                <td>{product.name}</td>
+                <td>{product.price / 100} €</td>
+                <td>
+                  <input
+                    min="1"
+                    type="number"
+                    value={localStorage.getItem(product.id)}
+                    onChange={(event) =>
+                      this.setItem(product.id, event.target.value)
+                    }
+                  />
+                </td>
+                <th>{this.calculate_total(product)} €</th>
+                <td>
+                  <Button onClick={() => this.removeItem(product)}>
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
             <tr>
-              <td>
-                <img
-                  width="100"
-                  height="100"
-                  src={product.image}
-                  alt=""
-                  style={{ "object-fit": "cover" }}
-                />
-              </td>
-              <td>{product.name}</td>
-              <td>{product.price / 100} €</td>
-              <td>
-                <input
-                  min="1"
-                  type="number"
-                  value={localStorage.getItem(product.id)}
-                  onChange={(event) =>
-                    this.setItem(product.id, event.target.value)
-                  }
-                />
-              </td>
-              <th>{this.calculate_total(product)} €</th>
-              <td>
-                <Button onClick={() => this.removeItem(product)}>Delete</Button>
-              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <th>{this.state.total.toFixed(2)} €</th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <th>{this.state.total.toFixed(2)} €</th>
-          </tr>
-        </tfoot>
-      </table>
+          </tfoot>
+        </table>
+      </div>
     );
   }
 }
