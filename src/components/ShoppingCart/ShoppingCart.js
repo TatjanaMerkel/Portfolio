@@ -13,13 +13,22 @@ class ShoppingCart extends React.Component {
     };
   }
 
+  setItem(id, amount) {
+    localStorage.setItem(String(id), String(amount));
+    this.forceUpdate();
+  }
+
   componentDidMount() {
+    this.loadLocalStorage();
+  }
+
+  loadLocalStorage() {
     Object.keys(localStorage).forEach(async (id) => {
       const res = await fetch(`http://localhost:3001/product/${id}`);
       const product = await res.json();
 
       const product_total = this.calculate_total(product);
-      this.setState({ total: this.state.total + product_total });
+      this.setState({ total: Number(this.state.total) + Number(product_total) });
 
       const products = this.state.products;
       products.push(product);
@@ -28,7 +37,7 @@ class ShoppingCart extends React.Component {
   }
 
   calculate_total(product) {
-    return (product.price / 100) * localStorage.getItem(product.id);
+    return ((product.price / 100) * localStorage.getItem(product.id)).toFixed(2);
   }
 
   removeItem(product) {
@@ -72,12 +81,18 @@ class ShoppingCart extends React.Component {
               </td>
               <td>{product.name}</td>
               <td>{product.price / 100} €</td>
-              <td>{localStorage.getItem(product.id)} </td>
+              <td>
+                <input
+                  type="number"
+                  value={localStorage.getItem(product.id)}
+                  onChange={(event) =>
+                    this.setItem(product.id, event.target.value)
+                  }
+                />
+              </td>
               <th>{this.calculate_total(product)} €</th>
               <td>
-                <Button onClick={() => this.removeItem(product)}>
-                  Delete
-                </Button>
+                <Button onClick={() => this.removeItem(product)}>Delete</Button>
               </td>
             </tr>
           ))}
