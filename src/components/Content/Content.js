@@ -9,9 +9,9 @@ class Content extends React.Component {
 
     this.state = {
       category: props.category,
-      count: 0,
       vegetables: [],
       priceTypes: [],
+      amounts: {},
     };
   }
 
@@ -22,7 +22,11 @@ class Content extends React.Component {
       oldCount = 0;
     }
 
-    const newCount = oldCount + 1;
+    const amounts = this.state.amounts;
+    const newCount = oldCount + Number(amounts[id]);
+    amounts[id] = 0;
+    this.setState({ amounts: amounts });
+
     localStorage.setItem(String(id), String(newCount));
   }
 
@@ -33,6 +37,13 @@ class Content extends React.Component {
     const vegetables = await res.json();
     console.log(vegetables);
     this.setState({ vegetables: vegetables });
+
+    const amounts = this.state.amounts;
+    for (const vegetable of vegetables) {
+      amounts[vegetable.id] = 0;
+    }
+    this.setState({ amounts: amounts });
+    console.log(this.state.amounts);
   }
 
   async updatePriceTypes() {
@@ -60,6 +71,12 @@ class Content extends React.Component {
     this.updateProducts(this.state.category);
   }
 
+  setAmount(id, amount) {
+    const amounts = this.state.amounts;
+    amounts[id] = amount;
+    this.setState({ amounts: amounts });
+  }
+
   render() {
     const cards = this.state.vegetables.map((vegetable) => (
       <Card style={{ width: "18rem", margin: "8px" }}>
@@ -68,6 +85,14 @@ class Content extends React.Component {
           <Card.Title>{vegetable["name"]}</Card.Title>
           <Card.Text>{vegetable["description"]}</Card.Text>
           <Card.Text>
+            <input
+              min="1"
+              type="number"
+              value={this.state.amounts[vegetable.id]}
+              onChange={(event) =>
+                this.setAmount(vegetable.id, event.target.value)
+              }
+            />
             {vegetable["price"] / 100} €{" "}
             {this.getPriceTypeDescription(vegetable["price_type"])}{" "}
           </Card.Text>
@@ -79,7 +104,6 @@ class Content extends React.Component {
               Warenkorb hinzufügen
             </Button>
           </div>
-          <div>Click {this.state.count}</div>
         </Card.Body>
       </Card>
     ));
