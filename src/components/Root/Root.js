@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 
-import Content from "../Content";
+import Products from "../Products";
 import AddProduct from "../AddProduct";
 import ProductList from "../ProductList";
 import EditProduct from "../EditProduct";
@@ -26,7 +26,7 @@ const Root = () => {
 
       <Switch>
         <Route component={OnlineShop} exact path="/" />
-        <Route path="/products"><Content category={query.get("category")}/></Route>
+        <Route path="/products"><Products category={query.get("category")}/></Route>
         <Route component={ShoppingCart} path="/shopping-cart" />
 
         <Route component={AddCategory} path="/admin/add-category" />

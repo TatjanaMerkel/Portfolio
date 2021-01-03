@@ -59,10 +59,6 @@ class ShoppingCart extends React.Component {
     this.setState({ products: products });
   }
 
-  setItem(id, amount) {
-    localStorage.setItem(String(id), String(amount));
-  }
-
   render() {
     return (
       <table

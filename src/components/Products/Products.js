@@ -1,9 +1,9 @@
 import React from "react";
-import "./Content.css";
+import "./Products.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-class Content extends React.Component {
+class Products extends React.Component {
   constructor(props) {
     super(props);
 
@@ -135,4 +135,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content;
+export default Products;
