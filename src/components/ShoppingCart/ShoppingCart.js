@@ -1,5 +1,6 @@
 import React from "react";
 import "./ShoppingCart.css";
+import { Button } from "react-bootstrap";
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class ShoppingCart extends React.Component {
       const product = await res.json();
 
       const product_total = this.calculate_total(product);
-      this.setState({total: this.state.total + product_total})
+      this.setState({ total: this.state.total + product_total });
 
       const products = this.state.products;
       products.push(product);
@@ -28,6 +29,15 @@ class ShoppingCart extends React.Component {
 
   calculate_total(product) {
     return (product.price / 100) * localStorage.getItem(product.id);
+  }
+
+  removeItem(product) {
+    localStorage.removeItem(product.id);
+    const product_total = this.calculate_total(product);
+    this.setState({ total: this.state.total - product_total });
+
+    const products = this.state.products.filter((p) => p.id !== product.id);
+    this.setState({ products: products });
   }
 
   render() {
@@ -64,6 +74,11 @@ class ShoppingCart extends React.Component {
               <td>{product.price / 100} €</td>
               <td>{localStorage.getItem(product.id)} </td>
               <th>{this.calculate_total(product)} €</th>
+              <td>
+                <Button onClick={() => this.removeItem(product)}>
+                  Delete
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
