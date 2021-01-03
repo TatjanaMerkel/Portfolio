@@ -1,7 +1,6 @@
 import "./ShoppingCart.css";
 
 import { Button } from "react-bootstrap";
-import HorizontalLinearStepper from "../CheckoutStepper/CheckoutStepper";
 import React from "react";
 
 class ShoppingCart extends React.Component {
@@ -66,8 +65,6 @@ class ShoppingCart extends React.Component {
   render() {
     return (
       <div>
-        <HorizontalLinearStepper></HorizontalLinearStepper>
-
         <table
           border="1"
           style={{
