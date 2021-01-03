@@ -38,6 +38,8 @@ class ShoppingCart extends React.Component {
           <th>Image</th>
           <th>Name</th>
           <th>Price</th>
+          <th>Amount</th>
+          <th>Total </th>
         </thead>
         <tbody>
         {this.state.products.map((product, index) => (
@@ -53,6 +55,8 @@ class ShoppingCart extends React.Component {
             </td>
             <td>{product.name}</td>
             <td>{product.price / 100} €</td>
+            <td>{localStorage.getItem(product.id)} </td>
+            <th>{product.price/100 * localStorage.getItem(product.id)} €</th>
           </tr>
         ))}
         </tbody>
