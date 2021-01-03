@@ -11,30 +11,43 @@ class Content extends React.Component {
       category: props.category,
       count: 0,
       vegetables: [],
-      priceTypes: []
+      priceTypes: [],
     };
   }
 
+  addItem(id) {
+    let oldCount = Number(localStorage.getItem(String(id)));
+
+    if (!oldCount) {
+      oldCount = 0;
+    }
+
+    const newCount = oldCount + 1;
+    localStorage.setItem(String(id), String(newCount));
+  }
+
   async updateProducts(category) {
-    const res = await fetch(`http://localhost:3001/products?category=${this.state.category}`);
+    const res = await fetch(
+      `http://localhost:3001/products?category=${this.state.category}`
+    );
     const vegetables = await res.json();
-    console.log(vegetables)
-    this.setState({vegetables: vegetables});
+    console.log(vegetables);
+    this.setState({ vegetables: vegetables });
   }
 
   async updatePriceTypes() {
-    const res = await fetch('http://localhost:3001/price-types');
+    const res = await fetch("http://localhost:3001/price-types");
     const priceTypes = await res.json();
-    console.log(priceTypes)
-    this.setState({priceTypes: priceTypes});
+    console.log(priceTypes);
+    this.setState({ priceTypes: priceTypes });
   }
 
   getPriceTypeDescription(id) {
-    const priceTypes = this.state.priceTypes.filter(priceType => priceType['id'] === id)
-    if (priceTypes.length > 0)
-      return priceTypes[0]['description']
-    else
-      return ''
+    const priceTypes = this.state.priceTypes.filter(
+      (priceType) => priceType["id"] === id
+    );
+    if (priceTypes.length > 0) return priceTypes[0]["description"];
+    else return "";
   }
 
   componentDidMount() {
@@ -43,7 +56,7 @@ class Content extends React.Component {
   }
 
   async componentWillReceiveProps(nextProps) {
-    await this.setState({category: nextProps.category})
+    await this.setState({ category: nextProps.category });
     this.updateProducts(this.state.category);
   }
 
@@ -54,10 +67,13 @@ class Content extends React.Component {
         <Card.Body>
           <Card.Title>{vegetable["name"]}</Card.Title>
           <Card.Text>{vegetable["description"]}</Card.Text>
-          <Card.Text>{vegetable["price"]/100} € {this.getPriceTypeDescription(vegetable["price_type"])} </Card.Text>
+          <Card.Text>
+            {vegetable["price"] / 100} €{" "}
+            {this.getPriceTypeDescription(vegetable["price_type"])}{" "}
+          </Card.Text>
           <div className="text-center">
             <Button
-              onClick={() => this.setState({ count: this.state.count + 1 })}
+              onClick={() => this.addItem(vegetable.id)}
               variant="primary"
             >
               Warenkorb hinzufügen
@@ -86,7 +102,7 @@ class Content extends React.Component {
         ></script>
 
         <script>var Alert = ReactBootstrap.Alert;</script>
-        
+
         <div className="content">
           <div style={{ display: "flex", flexWrap: "wrap" }}>{cards}</div>
         </div>
