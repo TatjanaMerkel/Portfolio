@@ -74,7 +74,7 @@ export class Header extends Component {
 
           <Form inline>
             <Link to="/shopping-cart">
-              <Button variant="outline-info">Warenkorb</Button>
+              <Button variant="outline-info">Warenkorb ({localStorage.length})</Button>
             </Link>
           </Form>
         </Navbar>
