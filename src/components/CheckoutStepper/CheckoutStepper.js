@@ -1,4 +1,5 @@
 import Button from '@material-ui/core/Button';
+import PaymentOptions from '../PaymentOptions';
 import React from 'react';
 import ShoppingCart from '../ShoppingCart';
 import Step from '@material-ui/core/Step';
@@ -29,7 +30,7 @@ function getStepContent(stepIndex) {
     case 0:
       return <ShoppingCart />;
     case 1:
-      return 'What is an ad group anyways?';
+      return <PaymentOptions />;
     case 2:
       return 'This is the bit I really care about!';
     default:
