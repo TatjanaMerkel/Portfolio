@@ -72,6 +72,7 @@ export default function CheckoutStepper() {
           </Step>
         ))}
       </Stepper>
+      
       <div>
         {activeStep === steps.length ? (
           <div>
@@ -85,7 +86,8 @@ export default function CheckoutStepper() {
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-            <div>
+            
+            <div class="d-flex justify-content-between mt-4 ml-5 mr-5">
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
