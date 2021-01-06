@@ -1,5 +1,5 @@
-import React from "react";
 import { Button } from "react-bootstrap";
+import React from "react";
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -38,22 +38,36 @@ class CategoryList extends React.Component {
   handleEdit = (id) => {
     this.props.history.push(`/admin/edit-category/${id}`);
   }
-
   render() {
     return (
-      <ul>
-        {this.state.categories.map((category, index) => (
-          <li>
-            {category.id} {category.name}
-            <Button onClick={() => this.handleEdit(category.id)}>
-              Edit
-            </Button>{" "}
-            <Button onClick={() => this.handleDelete(category.id)}>
-              Delete
-            </Button>
-          </li>
-        ))}
-      </ul>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Kategorie</th>
+            <th scope="col">Bearbeiten</th>
+            <th scope="col">Löschen</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.categories.map((category, index) => (
+            <tr>
+              <th scope="row">{category.id}</th>
+              <td>{category.name}</td>
+              <td>
+                <Button onClick={() => this.handleEdit(category.id)}>
+                  Bearbeiten
+                </Button>
+              </td>
+              <td>
+                <Button onClick={() => this.handleDelete(category.id)}>
+                Löschen
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 }
