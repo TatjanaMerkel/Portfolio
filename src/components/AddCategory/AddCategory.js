@@ -61,8 +61,8 @@ class AddCategory extends React.Component {
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">
-              Submit
+            <button type="submit" class="btn btn-default btn-primary">
+              Bestätigen
             </button>
           </div>
         </div>
