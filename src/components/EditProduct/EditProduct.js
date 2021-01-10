@@ -6,9 +6,11 @@ class EditProduct extends React.Component {
     this.state = {
       id: 0,
       values: {
-        name: "asdf",
-        category: 3,
+        category: 1,
+        price_type: 1,
+        name: "",
         description: "",
+        price: 0,
         image: "",
       },
 
@@ -24,9 +26,11 @@ class EditProduct extends React.Component {
     const product = await res.json();
     this.setState({
       values: {
-        name: product.name,
         category: product.category,
+        price_type: product.price_type,
+        name: product.name,
         description: product.description,
+        price: product.price,
         image: product.image,
       },
     });
@@ -109,6 +113,42 @@ class EditProduct extends React.Component {
               value={this.state.values.description}
               onChange={this.handleInputChange}
             />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="price">
+            Price in cents:
+          </label>
+          <div class="col-sm-10">
+            <input
+              id="price"
+              class="form-control"
+              type="number"
+              name="price"
+              placeholder="Enter product price"
+              value={this.state.values.price}
+              onChange={this.handleInputChange}
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="price-type">
+            Price Type:
+          </label>
+          <div class="col-sm-10">
+            <select
+              id="price-type"
+              name="price-type"
+              class="form-control"
+              value={this.state.values.price_type}
+              onChange={this.handleInputChange}
+            >
+              <option value="1">Per piece</option>
+              <option value="2">Per kilo</option>
+              <option value="3">Per 100g</option>
+            </select>
           </div>
         </div>
 

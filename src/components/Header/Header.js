@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-} from "react-bootstrap";
 import "./Header.css";
 
+import {
+  Button,
+  Form,
+  FormControl,
+  Nav,
+  NavDropdown,
+  Navbar,
+} from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
+import React, { Component } from "react";
 
 export class Header extends Component {
   constructor(props) {
@@ -48,7 +48,10 @@ export class Header extends Component {
 
             <NavDropdown title="Produkte">
               {this.state.categories.map((category, index) => (
-                <NavDropdown.Item as={Link} to={`/products?category=${category.id}`}>
+                <NavDropdown.Item
+                  as={Link}
+                  to={`/products?category=${category.id}`}
+                >
                   {category.name}
                 </NavDropdown.Item>
               ))}
@@ -70,7 +73,9 @@ export class Header extends Component {
           </Nav>
 
           <Form inline>
-            <Button variant="outline-info">Warenkorb</Button>
+            <Link to="/shopping-cart">
+              <Button variant="outline-info">Warenkorb ({localStorage.length})</Button>
+            </Link>
           </Form>
         </Navbar>
 

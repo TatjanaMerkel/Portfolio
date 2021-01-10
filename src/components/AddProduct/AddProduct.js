@@ -1,19 +1,21 @@
 import React from "react";
 class AddProduct extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            values: {
-              name: "asdf",
-              category: 3,
-              description: "",
-              image: "",
-            },
-        
-            isSubmitting: false,
-            isError: false,
-          };
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      values: {
+        category: 1,
+        price_type: 1,
+        name: "",
+        description: "",
+        price: 0,
+        image: "",
+      },
+
+      isSubmitting: false,
+      isError: false,
+    };
+  }
 
   submitForm = async (e) => {
     e.preventDefault();
@@ -74,8 +76,8 @@ class AddProduct extends React.Component {
               value={this.state.values.category}
               onChange={this.handleInputChange}
             >
-              <option value="3">Fruits</option>
-              <option value="4">Vegetables</option>
+              <option value="1">Fruits</option>
+              <option value="2">Vegetables</option>
             </select>
           </div>
         </div>
@@ -93,6 +95,42 @@ class AddProduct extends React.Component {
               value={this.state.values.description}
               onChange={this.handleInputChange}
             />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="price">
+            Price in cents:
+          </label>
+          <div class="col-sm-10">
+            <input
+              id="price"
+              class="form-control"
+              type="number"
+              name="price"
+              placeholder="Enter product price"
+              value={this.state.values.price}
+              onChange={this.handleInputChange}
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="price-type">
+            Price Type:
+          </label>
+          <div class="col-sm-10">
+            <select
+              id="price-type"
+              name="price-type"
+              class="form-control"
+              value={this.state.values.price_type}
+              onChange={this.handleInputChange}
+            >
+              <option value="1">Per piece</option>
+              <option value="2">Per kilo</option>
+              <option value="3">Per 100g</option>
+            </select>
           </div>
         </div>
 

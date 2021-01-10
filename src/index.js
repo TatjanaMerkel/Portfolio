@@ -1,19 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import React from "react";
+import ReactDOM from "react-dom";
 import Root from "./components/Root/Root";
+import { BrowserRouter as Router } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
       <Root />
     </React.StrictMode>
-    ,
   </Router>,
 
   document.getElementById("root")

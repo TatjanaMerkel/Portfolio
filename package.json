@@ -1,8 +1,9 @@
 {
   "name": "portfolio",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
