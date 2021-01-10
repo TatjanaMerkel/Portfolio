@@ -40,7 +40,7 @@ class CategoryList extends React.Component {
   }
   render() {
     return (
-      <table class="table table-bordered">
+      <table style={{margin: ' 25px auto', width: '80%' }} class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
