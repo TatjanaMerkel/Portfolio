@@ -77,6 +77,10 @@ export class Header extends Component {
               <Button variant="outline-info">Warenkorb ({localStorage.length})</Button>
             </Link>
           </Form>
+
+          <Link class="ml-2" to="/admin/login">
+              <Button variant="outline-info">Login</Button>
+            </Link>
         </Navbar>
 
         <div></div>
