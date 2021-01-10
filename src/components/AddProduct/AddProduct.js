@@ -19,7 +19,6 @@ class AddProduct extends React.Component {
 
   submitForm = async (e) => {
     e.preventDefault();
-    console.log(this.state);
     this.setState({ isSubmitting: true });
 
     const res = await fetch("http://localhost:3001/product", {
@@ -46,7 +45,7 @@ class AddProduct extends React.Component {
     
   render() {
     return (
-      <form style={{margin: ' 25px auto', width: '50%' }}class="form-horizontal" onSubmit={this.submitForm}>
+      <form style={{margin: ' 25px auto', width: '50%' }} class="form-horizontal" onSubmit={this.submitForm}>
         <div class="form-group">
           <label class="control-label col-sm-2" for="name">
             Name:

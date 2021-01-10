@@ -3,8 +3,36 @@ import React from "react";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      credentials: {
+        username: '',
+        password: ''
+      },
+      
+      isSubmitting: false,
+      isError: false
+    };
   }
+
+  submitForm = async (e) => {
+    e.preventDefault();
+    this.setState({ isSubmitting: true });
+
+    const res = await fetch("http://localhost:3001/login", {
+      method: "POST",
+      body: JSON.stringify(this.state.credentials),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    this.setState({ isSubmitting: false });
+    const data = await res.json();
+
+    !data.hasOwnProperty("error")
+      ? this.setState({ message: data.success })
+      : this.setState({ message: data.error, isError: true });
+  };
 
   render() {
     return (
@@ -13,7 +41,7 @@ class Login extends React.Component {
           <article class="card-body">
             <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
             <hr />
-            <form>
+            <form onSubmit={this.submitForm}>
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -25,7 +53,7 @@ class Login extends React.Component {
                   <input
                     name=""
                     class="form-control"
-                    placeholder="Email or login"
+                    placeholder="Username"
                     type="email"
                   />
                 </div>
