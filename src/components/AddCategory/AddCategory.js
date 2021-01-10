@@ -41,7 +41,7 @@ class AddCategory extends React.Component {
 
   render() {
     return (
-      <form class="form-horizontal" onSubmit={this.submitForm}>
+      <form style={{margin: ' 25px auto', width: '50%' }} class="form-horizontal" onSubmit={this.submitForm}>
         <div class="form-group">
           <label class="control-label col-sm-2" for="name">
             Name:
@@ -61,8 +61,8 @@ class AddCategory extends React.Component {
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">
-              Submit
+            <button type="submit" class="btn btn-default btn-primary">
+              Bestätigen
             </button>
           </div>
         </div>

@@ -1,7 +1,8 @@
-import React from "react";
 import "./Content.css";
-import Card from "react-bootstrap/Card";
+
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import React from "react";
 
 class Content extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Content extends React.Component {
         </Card.Body>
       </Card>
     ));
+    
 
     return (
       <div>
@@ -73,6 +75,7 @@ class Content extends React.Component {
         </div>
       </div>
     );
+    
   }
 }
 

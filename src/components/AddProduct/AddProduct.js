@@ -1,5 +1,4 @@
 import React from "react";
-
 class AddProduct extends React.Component {
     constructor(props) {
         super(props);
@@ -42,9 +41,10 @@ class AddProduct extends React.Component {
       values: { ...this.state.values, [e.target.name]: e.target.value },
     });
 
+    
   render() {
     return (
-      <form class="form-horizontal" onSubmit={this.submitForm}>
+      <form style={{margin: ' 25px auto', width: '50%' }}class="form-horizontal" onSubmit={this.submitForm}>
         <div class="form-group">
           <label class="control-label col-sm-2" for="name">
             Name:
@@ -85,7 +85,7 @@ class AddProduct extends React.Component {
             Description:
           </label>
           <div class="col-sm-10">
-            <textarea
+            <textarea 
               class="form-control"
               id="description"
               name="description"
@@ -101,7 +101,7 @@ class AddProduct extends React.Component {
             Image:
           </label>
           <div class="col-sm-10">
-            <input
+          <input 
               type="text"
               class="form-control"
               id="image"
@@ -115,8 +115,8 @@ class AddProduct extends React.Component {
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">
-              Submit
+            <button type="submit" class="btn btn-default btn-primary">
+              Bestätigen
             </button>
           </div>
         </div>
