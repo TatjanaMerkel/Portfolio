@@ -37,23 +37,38 @@ class ProductList extends React.Component {
 
   handleEdit = (id) => {
     this.props.history.push(`/admin/edit-product/${id}`);
-  }
+  };
 
   render() {
     return (
-      <ul>
-        {this.state.products.map((product, index) => (
-          <li>
-            {product.id} {product.name}
-            <Button onClick={() => this.handleEdit(product.id)}>
-              Edit
-            </Button>{" "}
-            <Button onClick={() => this.handleDelete(product.id)}>
-              Delete
-            </Button>
-          </li>
-        ))}
-      </ul>
+      <table style={{margin: ' 25px auto', width: '80%' }}  class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produkte</th>
+            <th scope="col">Bearbeiten</th>
+            <th scope="col">Löschen</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.products.map((product, index) => (
+            <tr>
+              <th scope="row">{product.id}</th>
+              <td>{product.name}</td>
+              <td>
+                <Button onClick={() => this.handleEdit(product.id)}>
+                  Bearbeiten
+                </Button>
+              </td>
+              <td>
+                <Button onClick={() => this.handleDelete(product.id)}>
+                  Löschen
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 }
