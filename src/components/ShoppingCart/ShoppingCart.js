@@ -27,6 +27,7 @@ class ShoppingCart extends React.Component {
   loadLocalStorage() {
     Object.keys(localStorage).forEach(async (id) => {
       const res = await fetch(`http://localhost:3001/product/${id}`);
+      console.log(res);
       const product = await res.json();
 
       const products = this.state.products;
