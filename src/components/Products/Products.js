@@ -25,10 +25,16 @@ class Products extends React.Component {
 
     const amounts = this.state.amounts;
     const newCount = oldCount + Number(amounts[id]);
+    localStorage.setItem(String(id), String(newCount));
+
+    let cartSize = Number(localStorage.getItem("cartSize"));
+    if (!cartSize) {
+      cartSize = 0;
+    }
+    localStorage.setItem("cartSize", cartSize + Number(amounts[id]));
+
     amounts[id] = 0;
     this.setState({ amounts: amounts });
-
-    localStorage.setItem(String(id), String(newCount));
   }
 
   async updateProducts(category) {
@@ -84,6 +90,7 @@ class Products extends React.Component {
           <Card.Text>{product["description"]}</Card.Text>
           <Card.Text>
             <input
+              class="mr-2"
               min="1"
               type="number"
               value={this.state.amounts[product.id]}
@@ -96,7 +103,7 @@ class Products extends React.Component {
           </Card.Text>
           <div className="text-center">
             <Button onClick={() => this.addItem(product.id)} variant="primary">
-              Warenkorb hinzufügen
+              Add to Shopping Cart
             </Button>
           </div>
         </Card.Body>
@@ -104,27 +111,8 @@ class Products extends React.Component {
     ));
 
     return (
-      <div>
-        <script
-          src="https://unpkg.com/react/umd/react.production.min.js"
-          crossOrigin
-        ></script>
-
-        <script
-          src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-          crossOrigin
-        ></script>
-
-        <script
-          src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-          crossOrigin
-        ></script>
-
-        <script>var Alert = ReactBootstrap.Alert;</script>
-
-        <div className="content">
-          <div style={{ display: "flex", flexWrap: "wrap" }}>{cards}</div>
-        </div>
+      <div className="content">
+        <div style={{ display: "flex", flexWrap: "wrap" }}>{cards}</div>
       </div>
     );
   }

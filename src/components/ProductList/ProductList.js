@@ -18,9 +18,14 @@ class ProductList extends React.Component {
   }
 
   async handleDelete(id) {
-    console.log(id);
+    const token = localStorage.getItem('token');
+
     const res = await fetch(`http://localhost:3001/product/${id}`, {
       method: "DELETE",
+      body: JSON.stringify({ token: token }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     const newProducts = this.state.products.filter(function (obj) {

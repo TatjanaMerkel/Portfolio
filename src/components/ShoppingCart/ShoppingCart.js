@@ -15,9 +15,35 @@ class ShoppingCart extends React.Component {
   }
 
   setItem(id, amount) {
+    const oldCount = Number(localStorage.getItem(String(id)));
+    const delta = amount - oldCount;
+
     localStorage.setItem(String(id), String(amount));
 
+    let cartSize = Number(localStorage.getItem("cartSize"));
+    if (!cartSize) {
+      cartSize = 0;
+    }
+    localStorage.setItem("cartSize", cartSize + delta);
+
     this.calculate_total_total();
+  }
+
+  removeItem(product) {
+    const oldCount = Number(localStorage.getItem(String(product.id)));
+
+    let cartSize = Number(localStorage.getItem("cartSize"));
+    if (!cartSize) {
+      cartSize = 0;
+    }
+    localStorage.setItem("cartSize", cartSize - oldCount);
+
+    localStorage.removeItem(product.id);
+
+    this.calculate_total_total();
+
+    const products = this.state.products.filter((p) => p.id !== product.id);
+    this.setState({ products: products });
   }
 
   componentDidMount() {
@@ -52,15 +78,6 @@ class ShoppingCart extends React.Component {
     }
 
     this.setState({ total: total });
-  }
-
-  removeItem(product) {
-    localStorage.removeItem(product.id);
-
-    this.calculate_total_total();
-
-    const products = this.state.products.filter((p) => p.id !== product.id);
-    this.setState({ products: products });
   }
 
   render() {

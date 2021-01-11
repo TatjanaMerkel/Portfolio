@@ -27,6 +27,20 @@ export class Header extends Component {
     this.setState({ categories: categories });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+  getCartSize() {
+    let cartSize = localStorage.getItem('cartSize');
+
+    if (!cartSize) {
+      cartSize = 0;
+    }
+
+    return cartSize;
+  }
+
   render() {
     return (
       <header>
@@ -36,15 +50,6 @@ export class Header extends Component {
           </Navbar.Brand>
 
           <Nav className="mr-auto">
-            <NavDropdown title="Deine Box" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Gemüse-Box</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Obst-Box</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Mix-Box</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">
-                Rohkost-Box
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">Basic-Box</NavDropdown.Item>
-            </NavDropdown>
 
             <NavDropdown title="Produkte">
               {this.state.categories.map((category, index) => (
@@ -57,26 +62,47 @@ export class Header extends Component {
               ))}
             </NavDropdown>
 
-            <Nav.Link as={Link} to="/admin/add-category">
-              Add Category
-            </Nav.Link>
-            <Nav.Link as={Link} to="/admin/list-categories">
-              List Categories
-            </Nav.Link>
+            {localStorage.getItem("token") && (
+              <>
+                <Nav.Link as={Link} to="/admin/add-category">
+                  Add Category
+                </Nav.Link>
+                <Nav.Link as={Link} to="/admin/list-categories">
+                  List Categories
+                </Nav.Link>
 
-            <Nav.Link as={Link} to="/admin/add-product">
-              Add Product
-            </Nav.Link>
-            <Nav.Link as={Link} to="/admin/list-products">
-              List Products
-            </Nav.Link>
+                <Nav.Link as={Link} to="/admin/add-product">
+                  Add Product
+                </Nav.Link>
+                <Nav.Link as={Link} to="/admin/list-products">
+                  List Products
+                </Nav.Link>
+              </>
+            )}
           </Nav>
 
           <Form inline>
             <Link to="/shopping-cart">
-              <Button variant="outline-info">Warenkorb ({localStorage.length})</Button>
+              <Button variant="outline-info">
+                Shopping Cart ({this.getCartSize()})
+              </Button>
             </Link>
           </Form>
+
+          <div class="ml-2">
+            {localStorage.getItem("token") ? (
+              <Button
+                onClick={() => this.logout()}
+                variant="outline-info"
+              >
+                Logout
+              </Button>
+            ) : (
+              <Link to="/admin/login">
+                <Button variant="outline-info">Login</Button>
+              </Link>
+            )}
+          </div>
         </Navbar>
 
         <div></div>
