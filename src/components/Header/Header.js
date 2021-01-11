@@ -31,6 +31,16 @@ export class Header extends Component {
     localStorage.removeItem('token');
   }
 
+  getCartSize() {
+    let cartSize = localStorage.getItem('cartSize');
+
+    if (!cartSize) {
+      cartSize = 0;
+    }
+
+    return cartSize;
+  }
+
   render() {
     return (
       <header>
@@ -74,7 +84,7 @@ export class Header extends Component {
           <Form inline>
             <Link to="/shopping-cart">
               <Button variant="outline-info">
-                Warenkorb ({localStorage.length})
+                Warenkorb ({this.getCartSize()})
               </Button>
             </Link>
           </Form>

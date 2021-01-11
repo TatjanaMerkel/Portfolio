@@ -25,10 +25,16 @@ class Products extends React.Component {
 
     const amounts = this.state.amounts;
     const newCount = oldCount + Number(amounts[id]);
+    localStorage.setItem(String(id), String(newCount));
+
+    let cartSize = Number(localStorage.getItem("cartSize"));
+    if (!cartSize) {
+      cartSize = 0;
+    }
+    localStorage.setItem("cartSize", cartSize + Number(amounts[id]));
+
     amounts[id] = 0;
     this.setState({ amounts: amounts });
-
-    localStorage.setItem(String(id), String(newCount));
   }
 
   async updateProducts(category) {
