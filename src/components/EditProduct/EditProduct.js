@@ -57,6 +57,8 @@ class EditProduct extends React.Component {
     !data.hasOwnProperty("error")
       ? this.setState({ message: data.success })
       : this.setState({ message: data.error, isError: true });
+    
+      this.props.history.push("/admin/list-products");
   };
 
   handleInputChange = (e) =>
