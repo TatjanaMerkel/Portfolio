@@ -18,9 +18,14 @@ class CategoryList extends React.Component {
   }
 
   async handleDelete(id) {
-    console.log(id);
+    const token = localStorage.getItem('token');
+
     const res = await fetch(`http://localhost:3001/category/${id}`, {
       method: "DELETE",
+      body: JSON.stringify({ token: token }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     const newCategories = this.state.categories.filter(function (obj) {

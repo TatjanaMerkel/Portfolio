@@ -41,9 +41,11 @@ class EditProduct extends React.Component {
     console.log(this.state);
     this.setState({ isSubmitting: true });
 
+    const token = localStorage.getItem('token');
+
     const res = await fetch(`http://localhost:3001/product/${this.state.id}`, {
       method: "PUT",
-      body: JSON.stringify(this.state.values),
+      body: JSON.stringify({ ...this.state.values, token: token }),
       headers: {
         "Content-Type": "application/json",
       },

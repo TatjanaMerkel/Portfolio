@@ -57,30 +57,36 @@ export class Header extends Component {
               ))}
             </NavDropdown>
 
-            <Nav.Link as={Link} to="/admin/add-category">
-              Add Category
-            </Nav.Link>
-            <Nav.Link as={Link} to="/admin/list-categories">
-              List Categories
-            </Nav.Link>
+            {localStorage.getItem("token") && (
+              <>
+                <Nav.Link as={Link} to="/admin/add-category">
+                  Add Category
+                </Nav.Link>
+                <Nav.Link as={Link} to="/admin/list-categories">
+                  List Categories
+                </Nav.Link>
 
-            <Nav.Link as={Link} to="/admin/add-product">
-              Add Product
-            </Nav.Link>
-            <Nav.Link as={Link} to="/admin/list-products">
-              List Products
-            </Nav.Link>
+                <Nav.Link as={Link} to="/admin/add-product">
+                  Add Product
+                </Nav.Link>
+                <Nav.Link as={Link} to="/admin/list-products">
+                  List Products
+                </Nav.Link>
+              </>
+            )}
           </Nav>
 
           <Form inline>
             <Link to="/shopping-cart">
-              <Button variant="outline-info">Warenkorb ({localStorage.length})</Button>
+              <Button variant="outline-info">
+                Warenkorb ({localStorage.length})
+              </Button>
             </Link>
           </Form>
 
           <Link class="ml-2" to="/admin/login">
-              <Button variant="outline-info">Login</Button>
-            </Link>
+            <Button variant="outline-info">Login</Button>
+          </Link>
         </Navbar>
 
         <div></div>
