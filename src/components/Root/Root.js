@@ -12,6 +12,7 @@ import OnlineShop from "../OnlineShop";
 import ProductList from "../ProductList";
 import Products from "../Products";
 import React from "react";
+import Thanks from "../Thanks";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -28,6 +29,7 @@ const Root = () => {
         <Route component={OnlineShop} exact path="/" />
         <Route path="/products"><Products category={query.get("category")}/></Route>
         <Route component={CheckoutStepper} path="/shopping-cart" />
+        <Route component={Thanks} path="/thanks" />
 
         <Route component={Login} path="/admin/login" />
 

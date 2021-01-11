@@ -1,5 +1,6 @@
 import Addresses from "../Addresses";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import PaymentOptions from "../PaymentOptions";
 import React from "react";
 import ShoppingCart from "../ShoppingCart";
@@ -23,12 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [
-    "Check shopping cart",
-    "Select payment option",
-    "Enter address",
-    "Confirm purchase",
-  ];
+  return ["Check shopping cart", "Select payment option", "Enter address"];
 }
 
 function getStepContent(stepIndex) {
@@ -39,8 +35,6 @@ function getStepContent(stepIndex) {
       return <PaymentOptions />;
     case 2:
       return <Addresses />;
-    case 3:
-      return "This is the bit I really care about!";
     default:
       return "Unknown stepIndex";
   }
@@ -72,12 +66,22 @@ export default function CheckoutStepper() {
           </Step>
         ))}
       </Stepper>
-      
+
       <div>
         {activeStep === steps.length ? (
-          <div>
+          <div class="w-100">
             <Typography className={classes.instructions}>
-              All steps completed
+              <div class='mt-4 mb-4'>
+                <Link to='/thanks'>
+                <button
+                  style={{ display: "block", margin: "auto" }}
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Confirm Purchase
+                </button>
+                </Link>
+              </div>
             </Typography>
             <Button onClick={handleReset}>Reset</Button>
           </div>
@@ -86,7 +90,7 @@ export default function CheckoutStepper() {
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-            
+
             <div class="d-flex justify-content-between mt-4 ml-5 mr-5">
               <Button
                 disabled={activeStep === 0}
