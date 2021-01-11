@@ -27,6 +27,10 @@ export class Header extends Component {
     this.setState({ categories: categories });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
   render() {
     return (
       <header>
@@ -36,15 +40,6 @@ export class Header extends Component {
           </Navbar.Brand>
 
           <Nav className="mr-auto">
-            <NavDropdown title="Deine Box" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Gemüse-Box</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Obst-Box</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Mix-Box</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">
-                Rohkost-Box
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">Basic-Box</NavDropdown.Item>
-            </NavDropdown>
 
             <NavDropdown title="Produkte">
               {this.state.categories.map((category, index) => (
@@ -84,9 +79,20 @@ export class Header extends Component {
             </Link>
           </Form>
 
-          <Link class="ml-2" to="/admin/login">
-            <Button variant="outline-info">Login</Button>
-          </Link>
+          <div class="ml-2">
+            {localStorage.getItem("token") ? (
+              <Button
+                onClick={() => this.logout()}
+                variant="outline-info"
+              >
+                Logout
+              </Button>
+            ) : (
+              <Link to="/admin/login">
+                <Button variant="outline-info">Login</Button>
+              </Link>
+            )}
+          </div>
         </Navbar>
 
         <div></div>
