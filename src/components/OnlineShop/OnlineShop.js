@@ -87,6 +87,7 @@ class OnlineShop extends React.Component {
           <Card.Text>{product["description"]}</Card.Text>
           <Card.Text>
             <input
+              class="mr-2"
               min="1"
               type="number"
               value={this.state.amounts[product.id]}
@@ -99,7 +100,7 @@ class OnlineShop extends React.Component {
           </Card.Text>
           <div className="text-center">
             <Button onClick={() => this.addItem(product.id)} variant="primary">
-              Warenkorb hinzufügen
+              Add to Shopping Cart
             </Button>
           </div>
         </Card.Body>

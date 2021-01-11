@@ -84,7 +84,7 @@ export class Header extends Component {
           <Form inline>
             <Link to="/shopping-cart">
               <Button variant="outline-info">
-                Warenkorb ({this.getCartSize()})
+                Shopping Cart ({this.getCartSize()})
               </Button>
             </Link>
           </Form>
